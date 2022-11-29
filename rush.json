@@ -42,7 +42,7 @@
    * LTS schedule: https://nodejs.org/en/about/releases/
    * LTS versions: https://nodejs.org/en/download/releases/
    */
-  "nodeSupportedVersionRange": ">=12.13.0 <13.0.0 || >=14.15.0 <15.0.0 || >=16.13.0 <17.0.0",
+  "nodeSupportedVersionRange": ">=12.13.0 <13.0.0 || >=14.15.0 <15.0.0 || >=16.13.0 <17.0.0 || >=18.12.0 <19.0.0",
 
   /**
    * Odd-numbered major versions of Node.js are experimental.  Even-numbered releases
@@ -324,23 +324,23 @@
    * 3. It's useful to have a centralized inventory of all projects and their important metadata.
    */
   "projects": [
-    // {
+     {
     //   /**
     //    * The NPM package name of the project (must match package.json)
     //    */
-    //   "packageName": "my-app",
+       "packageName": "open-scoreboard-api",
     // 
     //   /**
     //    * The path to the project folder, relative to the rush.json config file.
     //    */
-    //   "projectFolder": "apps/my-app",
+      "projectFolder": "app/open-scoreboard-api",
     // 
     //   /**
     //    * An optional category for usage in the "browser-approved-packages.json"
     //    * and "nonbrowser-approved-packages.json" files.  The value must be one of the
     //    * strings from the "reviewCategories" defined above.
     //    */
-    //   "reviewCategory": "production",
+      "reviewCategory": "production",
     // 
     //   /**
     //    * A list of Rush project names that are to be installed from NPM
@@ -406,7 +406,7 @@
     //    * ".", and "@" characters.
     //    */
     //   // "tags": [ "1.0.0-release", "frontend-team" ]
-    // },
+     },
     // 
     // {
     //   "packageName": "my-controls",
