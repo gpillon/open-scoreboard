@@ -1,0 +1,12 @@
+{
+  "/api/v1": {
+    "target": "http://localhost:3000/",
+    "secure": false,
+    "logLevel": "info",
+    "changeOrigin": true
+    //        "pathRewrite": {
+    //          "^/v1/api": "/api",
+    //          "^/v1/auth": "/auth"
+    //        }
+  }
+}

@@ -1,0 +1,91 @@
+<c-row *ngIf="game">
+  <c-col xs>
+    <c-card class="mb-4">
+      <c-card-header>Last Game <strong>{{game.track.name}}</strong></c-card-header>
+      <c-card-body class="p-0">
+        <table
+          [hover]="true"
+          [responsive]="true"
+          [striped]="true"
+          align="middle"
+          cTable
+          class="mb-0 border"
+        >
+          <thead cTableColor="light">
+          <tr>
+            <th class="text-center">
+              <svg [cIcon]="icons.cilDiamond" size="lg" title="List Icon"></svg>
+            </th>
+            <th>Player</th>
+            <th class="text-right">Track Time</th>
+            <th class="text-right">Laps</th>
+            <!--            <th class="text-center">Country</th>-->
+            <!--            <th>Usage</th>-->
+            <!--            <th class="text-center">Payment Method</th>-->
+            <!--            <th>Activity</th>-->
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let game of game.playerScore; index as i">
+            <td class="text-center">
+              <!--              <c-avatar-->
+              <!--                size="md"-->
+              <!--                src="{{ game.avatar }}"-->
+              <!--                status="{{ game.status }}"-->
+              <!--              ></c-avatar>-->
+              <svg [cIcon]="icons.cilDiamond" size="lg" class="{{ (i+1) | positionToColor }}" title="List Icon"></svg>
+            </td>
+            <td>
+              <div>{{ game.player.nickname }}</div>
+              <!--              <div class="small text-medium-emphasis">-->
+              <!--                <span>{{ game.state }}</span> | Registered:-->
+              <!--                {{ game.registered }}-->
+              <!--              </div>-->
+            </td>
+            <td class="text-right">
+              <div>{{ game.totalTime | date:'H:mm:ss.SS':'UTC'}}</div>
+              <!--              <svg cIcon-->
+              <!--                   id="{{ game.country + game.name }}"-->
+              <!--                   name="cif{{ game.country }}"-->
+              <!--                   size="xl"-->
+              <!--                   title="{{ game.country }}"-->
+              <!--              ></svg>-->
+            </td>
+            <td>
+              <div>{{game.laps.length}}</div>
+            </td>
+            <!--            <td>-->
+            <!--              &lt;!&ndash;              <div class="clearfix">&ndash;&gt;-->
+            <!--              &lt;!&ndash;                <div class="float-start">&ndash;&gt;-->
+            <!--              &lt;!&ndash;                  <strong>{{ game.usage }}%</strong>&ndash;&gt;-->
+            <!--              &lt;!&ndash;                </div>&ndash;&gt;-->
+            <!--              &lt;!&ndash;                <div class="float-end">&ndash;&gt;-->
+            <!--              &lt;!&ndash;                  <small class="text-medium-emphasis">&ndash;&gt;-->
+            <!--              &lt;!&ndash;                    {{ game.period }}&ndash;&gt;-->
+            <!--              &lt;!&ndash;                  </small>&ndash;&gt;-->
+            <!--              &lt;!&ndash;                </div>&ndash;&gt;-->
+            <!--              &lt;!&ndash;              </div>&ndash;&gt;-->
+            <!--              &lt;!&ndash;              <c-progress thin&ndash;&gt;-->
+            <!--              &lt;!&ndash;              >&ndash;&gt;-->
+            <!--              &lt;!&ndash;                <c-progress-bar&ndash;&gt;-->
+            <!--              &lt;!&ndash;                  [value]="game.usage"&ndash;&gt;-->
+            <!--              &lt;!&ndash;                  color="{{ game.color }}"&ndash;&gt;-->
+            <!--              &lt;!&ndash;                ></c-progress-bar&ndash;&gt;-->
+            <!--              &lt;!&ndash;                >&ndash;&gt;-->
+            <!--              &lt;!&ndash;              </c-progress>&ndash;&gt;-->
+            <!--            </td>-->
+            <!--            <td class="text-center">-->
+
+            <!--              &lt;!&ndash;              <svg cIcon name="cibCc{{ game.payment }}" size="xl"></svg>&ndash;&gt;-->
+            <!--            </td>-->
+            <!--            <td>-->
+            <!--              <div class="small text-medium-emphasis">Last login</div>-->
+            <!--              &lt;!&ndash;              // <strong>{{ game.activity }}</strong>&ndash;&gt;-->
+            <!--            </td>-->
+          </tr>
+          </tbody>
+        </table>
+      </c-card-body>
+    </c-card>
+  </c-col>
+</c-row>

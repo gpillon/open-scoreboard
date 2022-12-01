@@ -1,0 +1,42 @@
+<c-row>
+  <c-col sm="6" xl="3">
+    <c-widget-stat-a
+      class="mb-4 pb-3"
+      color="primary"
+    >
+      <ng-template cTemplateId="widgetValueTemplate" ngPreserveWhitespaces>
+        {{lapCount | async}} Lap{{lapCount | async | pluralize}}
+      </ng-template>
+    </c-widget-stat-a>
+  </c-col>
+  <c-col sm="6" xl="3">
+    <c-widget-stat-a
+      class="mb-4 pb-3"
+      color="info"
+    >
+      <ng-template cTemplateId="widgetValueTemplate" ngPreserveWhitespaces>
+        <span>{{trackCount | async}} Track{{trackCount | async | pluralize}} </span>
+      </ng-template>
+    </c-widget-stat-a>
+  </c-col>
+  <c-col sm="6" xl="3">
+    <c-widget-stat-a
+      class="mb-4 pb-3"
+      color="warning"
+    >
+      <ng-template cTemplateId="widgetValueTemplate" ngPreserveWhitespaces>
+        <span>{{playerCount | async }} Player{{playerCount | async | pluralize}} </span>
+      </ng-template>
+    </c-widget-stat-a>
+  </c-col>
+  <c-col sm="6" xl="3">
+    <c-widget-stat-a
+      class="mb-4 pb-3"
+      color="danger"
+    >
+      <ng-template cTemplateId="widgetValueTemplate" ngPreserveWhitespaces>
+        <span>{{gameCount | async}} Game{{gameCount | async | pluralize}} </span>
+      </ng-template>
+    </c-widget-stat-a>
+  </c-col>
+</c-row>
