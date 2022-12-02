@@ -1,8 +1,10 @@
-import {ApiProperty} from "@nestjs/swagger";
-import {Expose} from "class-transformer";
+import { ApiProperty } from '@nestjs/swagger';
+import { Expose } from 'class-transformer';
+import { IsNumber } from 'class-validator';
 
-export class IdDto {
-    @ApiProperty({type: "string", format: "uuid"})
-    @Expose()
-    id: number;
+export class CountDto {
+  @ApiProperty({ type: 'number', format: 'int' })
+  @Expose()
+  @IsNumber()
+  count: number;
 }

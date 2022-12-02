@@ -11,7 +11,9 @@ describe('HealthcheckController', () => {
       providers: [HealthcheckService],
     }).compile();
 
-    healthcheckController = app.get<HealthcheckController>(HealthcheckController);
+    healthcheckController = app.get<HealthcheckController>(
+      HealthcheckController,
+    );
   });
 
   describe('healthcheckController', () => {

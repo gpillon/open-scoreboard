@@ -24,8 +24,8 @@ export const idNicknameDtoForm = new FormGroup({
 });
 
 export const lapWithoutTrackAndPlayerForm = new FormGroup({
-  lapNum: new FormControl(null, [Validators.required]),
-  lapTime: new FormControl(null, [Validators.required])
+  lapTime: new FormControl(null, [Validators.required]),
+  lapNum: new FormControl(null, [])
 });
 
 export const readPlayerScoreDtoForm = new FormGroup({
@@ -91,7 +91,7 @@ export const createPlayerDtoForm = new FormGroup({
 export const readPlayerDtoForm = new FormGroup({
   id: new FormControl(null, [Validators.required]),
   nickname: new FormControl(null, [Validators.required]),
-  totalGames: new FormControl(null, [Validators.required])
+  totalGames: new FormControl(null, [])
 });
 
 export const updatePlayerDtoForm = new FormGroup({

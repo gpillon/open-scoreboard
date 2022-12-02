@@ -17,8 +17,7 @@ describe('HealthcheckService', () => {
   });
 
   it('should get process uptime', () => {
-    const uptime = process.uptime()
+    const uptime = process.uptime();
     expect(service.uptime()).toBeGreaterThanOrEqual(uptime);
   });
-
 });

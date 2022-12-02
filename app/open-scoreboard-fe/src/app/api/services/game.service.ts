@@ -31,10 +31,6 @@ export class GameService extends BaseService {
   static readonly GameControllerCountPath = '/api/v1/game/count';
 
   /**
-   * Get the total games count.
-   *
-   *
-   *
    * This method provides access to the full `HttpResponse`, allowing access to response headers.
    * To access only the response body, use `gameControllerCount()` instead.
    *
@@ -59,10 +55,6 @@ export class GameService extends BaseService {
   }
 
   /**
-   * Get the total games count.
-   *
-   *
-   *
    * This method provides access to only to the response body.
    * To access the full response (for headers, for example), `gameControllerCount$Response()` instead.
    *
@@ -82,24 +74,16 @@ export class GameService extends BaseService {
   static readonly GameControllerFindAllPath = '/api/v1/game';
 
   /**
-   * Get all games (Default limit is 20).
-   *
-   * Get all games Sorted Descending by Game Date
-   *
    * This method provides access to the full `HttpResponse`, allowing access to response headers.
    * To access only the response body, use `gameControllerFindAll()` instead.
    *
    * This method doesn't expect any request body.
    */
   gameControllerFindAll$Response(params?: {
-    limit?: number;
-    skip?: number;
   }): Observable<StrictHttpResponse<Array<ReadGameDto>>> {
 
     const rb = new RequestBuilder(this.rootUrl, GameService.GameControllerFindAllPath, 'get');
     if (params) {
-      rb.query('limit', params.limit, {});
-      rb.query('skip', params.skip, {});
     }
 
     return this.http.request(rb.build({
@@ -114,18 +98,12 @@ export class GameService extends BaseService {
   }
 
   /**
-   * Get all games (Default limit is 20).
-   *
-   * Get all games Sorted Descending by Game Date
-   *
    * This method provides access to only to the response body.
    * To access the full response (for headers, for example), `gameControllerFindAll$Response()` instead.
    *
    * This method doesn't expect any request body.
    */
   gameControllerFindAll(params?: {
-    limit?: number;
-    skip?: number;
   }): Observable<Array<ReadGameDto>> {
 
     return this.gameControllerFindAll$Response(params).pipe(
@@ -139,10 +117,6 @@ export class GameService extends BaseService {
   static readonly GameControllerCreatePath = '/api/v1/game';
 
   /**
-   * Create a new game.
-   *
-   *
-   *
    * This method provides access to the full `HttpResponse`, allowing access to response headers.
    * To access only the response body, use `gameControllerCreate()` instead.
    *
@@ -169,10 +143,6 @@ export class GameService extends BaseService {
   }
 
   /**
-   * Create a new game.
-   *
-   *
-   *
    * This method provides access to only to the response body.
    * To access the full response (for headers, for example), `gameControllerCreate$Response()` instead.
    *
@@ -193,10 +163,6 @@ export class GameService extends BaseService {
   static readonly GameControllerFindOnePath = '/api/v1/game/{id}';
 
   /**
-   * Get a single game.
-   *
-   *
-   *
    * This method provides access to the full `HttpResponse`, allowing access to response headers.
    * To access only the response body, use `gameControllerFindOne()` instead.
    *
@@ -223,10 +189,6 @@ export class GameService extends BaseService {
   }
 
   /**
-   * Get a single game.
-   *
-   *
-   *
    * This method provides access to only to the response body.
    * To access the full response (for headers, for example), `gameControllerFindOne$Response()` instead.
    *
@@ -247,10 +209,6 @@ export class GameService extends BaseService {
   static readonly GameControllerRemovePath = '/api/v1/game/{id}';
 
   /**
-   * Delete a game.
-   *
-   *
-   *
    * This method provides access to the full `HttpResponse`, allowing access to response headers.
    * To access only the response body, use `gameControllerRemove()` instead.
    *
@@ -277,10 +235,6 @@ export class GameService extends BaseService {
   }
 
   /**
-   * Delete a game.
-   *
-   *
-   *
    * This method provides access to only to the response body.
    * To access the full response (for headers, for example), `gameControllerRemove$Response()` instead.
    *
@@ -301,10 +255,6 @@ export class GameService extends BaseService {
   static readonly GameControllerUpdatePath = '/api/v1/game/{id}';
 
   /**
-   * Edit a game.
-   *
-   *
-   *
    * This method provides access to the full `HttpResponse`, allowing access to response headers.
    * To access only the response body, use `gameControllerUpdate()` instead.
    *
@@ -333,10 +283,6 @@ export class GameService extends BaseService {
   }
 
   /**
-   * Edit a game.
-   *
-   *
-   *
    * This method provides access to only to the response body.
    * To access the full response (for headers, for example), `gameControllerUpdate$Response()` instead.
    *

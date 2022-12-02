@@ -1,19 +1,14 @@
 import { EntitySubscriberInterface, EventSubscriber } from 'typeorm';
-import { PlayerScore } from './player-score.entity';
+import { Player } from './player.entity';
 
 @EventSubscriber()
-export class GamePlayerSubscriber
-  implements EntitySubscriberInterface<PlayerScore>
-{
+export class PlayerSubscriber implements EntitySubscriberInterface<Player> {
   listenTo() {
-    return PlayerScore;
+    return Player;
   }
 
-  async afterLoad(playerScore: PlayerScore): Promise<void> {
-    playerScore.totalTime = playerScore.laps
-      ? playerScore.laps.some((l) => l === null)
-        ? null
-        : playerScore.laps.reduce((acc, lap) => acc + lap.lapTime, 0)
-      : null;
+  async afterLoad(player: Player): Promise<void> {
+    player.totalGames =
+      player.games && Array.isArray(player.games) ? player.games.length : null;
   }
 }

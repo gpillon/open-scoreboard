@@ -1,7 +1,10 @@
 <c-row *ngIf="game">
   <c-col xs>
     <c-card class="mb-4">
-      <c-card-header>Last Game <strong>{{game.track.name}}</strong></c-card-header>
+      <c-card-header class="game-table-title">
+        <div class="text-left">Last Game <strong>{{game.track.name}}</strong></div>
+        <div class="text-right">{{game.createdAt | date:'long'}}</div>
+      </c-card-header>
       <c-card-body class="p-0">
         <table
           [hover]="true"

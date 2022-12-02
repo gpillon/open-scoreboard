@@ -3,5 +3,5 @@
 export interface ReadPlayerDto {
   id: string;
   nickname: string;
-  totalGames: number;
+  totalGames?: number;
 }
