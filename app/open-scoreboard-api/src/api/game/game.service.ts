@@ -14,6 +14,7 @@ import { LapService } from '../lap/lap.service';
 import { UpdateGame } from './game.interfaces';
 import { CreateTrackDto } from '../track/dto/create-track.dto';
 import { CreatePlayerDto } from '../player/dto/create-player.dto';
+import { QueryGameDto } from './dto/query-game.dto';
 
 @Injectable()
 export class GameService {
@@ -108,10 +109,12 @@ export class GameService {
     );
   }
 
-  findAll() {
+  findAll(queryGameDto: QueryGameDto) {
     return this.gameRepository.find({
       relations: ['playerScore', 'track'],
       order: { createdAt: 'DESC' },
+      take: queryGameDto.limit || 20,
+      skip: queryGameDto.skip || 0,
     });
   }
 

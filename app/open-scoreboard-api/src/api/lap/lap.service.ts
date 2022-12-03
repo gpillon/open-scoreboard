@@ -8,6 +8,7 @@ import { CreateLap, UpdateLap } from './lap.interfaces';
 import { TrackService } from '../track/track.service';
 import { NotFoundErr } from '../../utils/decorators/notfound.decorator';
 import { PlayerService } from '../player/player.service';
+import { QueryGameDto } from '../game/dto/query-game.dto';
 
 @Injectable()
 export class LapService {
@@ -44,9 +45,11 @@ export class LapService {
     return this.findOne(newLap.identifiers[0].id);
   }
 
-  findAll() {
+  findAll(queryGameDto: QueryGameDto) {
     return this.lapRepository.find({
       relations: ['player', 'track'],
+      take: queryGameDto.limit || 20,
+      skip: queryGameDto.skip || 0,
     });
   }
 

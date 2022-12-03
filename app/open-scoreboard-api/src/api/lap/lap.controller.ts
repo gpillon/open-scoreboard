@@ -8,6 +8,7 @@ import {
   Param,
   Patch,
   Post,
+  Query,
 } from '@nestjs/common';
 import { LapService } from './lap.service';
 import { CreateLapDto } from './dto/create-lap.dto';
@@ -24,6 +25,7 @@ import { DtoUtils } from '../../utils/dto-utils.class';
 import { Lap } from './entities/lap.entity';
 import { ApiOkResponse } from '@nestjs/swagger/dist/decorators/api-response.decorator';
 import { CountDto } from '../../utils/dto/count.dto';
+import { QueryGameDto } from '../game/dto/query-game.dto';
 
 @ApiTags('Lap')
 @Controller('lap')
@@ -52,8 +54,8 @@ export class LapController {
 
   @Get()
   @ApiResponse({ type: ReadLapDto, isArray: true, status: HttpStatus.OK })
-  async findAll(): Promise<ReadLapDto[]> {
-    const laps: Lap[] = await this.lapService.findAll();
+  async findAll(@Query() queryGameDto: QueryGameDto): Promise<ReadLapDto[]> {
+    const laps: Lap[] = await this.lapService.findAll(queryGameDto);
     return DtoUtils.instanceToReadDtoArray(laps, ReadLapDto);
   }
 

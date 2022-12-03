@@ -8,6 +8,7 @@ import {
   Param,
   Patch,
   Post,
+  Query,
 } from '@nestjs/common';
 import { CreatePlayerDto } from './dto/create-player.dto';
 import { UpdatePlayerDto } from './dto/update-player.dto';
@@ -27,6 +28,7 @@ import { DtoUtils } from '../../utils/dto-utils.class';
 import { PlayerService } from './player.service';
 import { ApiOkResponse } from '@nestjs/swagger/dist/decorators/api-response.decorator';
 import { CountDto } from '../../utils/dto/count.dto';
+import { QueryGameDto } from '../game/dto/query-game.dto';
 
 @ApiTags('Player')
 @Controller('player')
@@ -60,8 +62,8 @@ export class PlayerController {
 
   @Get()
   @ApiResponse({ type: ReadPlayerDto, isArray: true, status: HttpStatus.OK })
-  async findAll() {
-    const players: Player[] = await this.playerService.findAll();
+  async findAll(@Query() queryGameDto: QueryGameDto) {
+    const players: Player[] = await this.playerService.findAll(queryGameDto);
     return DtoUtils.instanceToReadDtoArray(players, ReadPlayerDto);
   }
 

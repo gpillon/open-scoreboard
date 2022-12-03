@@ -1,12 +1,3 @@
-import { ApiPropertyOptional } from '@nestjs/swagger';
-import { IsOptional, Max, Min } from 'class-validator';
-import { Expose } from 'class-transformer';
+import { SkipLimitDto } from 'src/utils/dto/skip-limit.dto';
 
-export class QueryParamsDto {
-  @ApiPropertyOptional({ type: 'number' })
-  @Expose()
-  @IsOptional()
-  @Min(1)
-  @Max(500)
-  limit?: number;
-}
+export class QueryGameDto extends SkipLimitDto {}

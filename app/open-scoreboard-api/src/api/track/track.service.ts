@@ -4,6 +4,7 @@ import { UpdateTrackDto } from './dto/update-track.dto';
 import { Track } from './entities/track.entity';
 import { Repository } from 'typeorm';
 import { InjectRepository } from '@nestjs/typeorm';
+import { QueryGameDto } from '../game/dto/query-game.dto';
 
 @Injectable()
 export class TrackService {
@@ -27,8 +28,11 @@ export class TrackService {
     return this.findOne(newTrack.identifiers[0].id);
   }
 
-  findAll() {
-    return this.trackRepository.find();
+  findAll(queryGameDto: QueryGameDto) {
+    return this.trackRepository.find({
+      take: queryGameDto.limit || 20,
+      skip: queryGameDto.skip || 0,
+    });
   }
 
   async findOne(idOrName: string): Promise<Track | null> {

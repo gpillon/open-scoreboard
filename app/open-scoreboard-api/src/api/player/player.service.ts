@@ -4,6 +4,7 @@ import { UpdatePlayerDto } from './dto/update-player.dto';
 import { Player } from './entities/player.entity';
 import { Repository } from 'typeorm';
 import { InjectRepository } from '@nestjs/typeorm';
+import { QueryGameDto } from '../game/dto/query-game.dto';
 
 @Injectable()
 export class PlayerService {
@@ -27,8 +28,11 @@ export class PlayerService {
     return this.findOne(newPlayer.identifiers[0].id);
   }
 
-  findAll() {
-    return this.playerRepository.find();
+  findAll(queryGameDto: QueryGameDto) {
+    return this.playerRepository.find({
+      take: queryGameDto.limit || 20,
+      skip: queryGameDto.skip || 0,
+    });
   }
 
   async findOne(idOrNickname: string): Promise<Player | null> {

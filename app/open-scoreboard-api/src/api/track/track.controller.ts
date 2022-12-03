@@ -8,6 +8,7 @@ import {
   Param,
   Patch,
   Post,
+  Query,
 } from '@nestjs/common';
 import { TrackService } from './track.service';
 import { CreateTrackDto } from './dto/create-track.dto';
@@ -27,6 +28,7 @@ import { DtoUtils } from '../../utils/dto-utils.class';
 import { Track } from './entities/track.entity';
 import { ApiOkResponse } from '@nestjs/swagger/dist/decorators/api-response.decorator';
 import { CountDto } from '../../utils/dto/count.dto';
+import { QueryGameDto } from '../game/dto/query-game.dto';
 
 @ApiTags('Track')
 @Controller('track')
@@ -58,8 +60,8 @@ export class TrackController {
 
   @Get()
   @ApiResponse({ type: ReadTrackDto, isArray: true, status: HttpStatus.OK })
-  async findAll() {
-    const tracks = await this.trackService.findAll();
+  async findAll(@Query() queryGameDto: QueryGameDto) {
+    const tracks = await this.trackService.findAll(queryGameDto);
     return DtoUtils.instanceToReadDtoArray(tracks, ReadTrackDto);
   }
 

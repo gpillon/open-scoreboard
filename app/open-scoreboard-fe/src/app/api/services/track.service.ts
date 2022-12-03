@@ -80,10 +80,14 @@ export class TrackService extends BaseService {
    * This method doesn't expect any request body.
    */
   trackControllerFindAll$Response(params?: {
+    limit?: number;
+    skip?: number;
   }): Observable<StrictHttpResponse<Array<ReadTrackDto>>> {
 
     const rb = new RequestBuilder(this.rootUrl, TrackService.TrackControllerFindAllPath, 'get');
     if (params) {
+      rb.query('limit', params.limit, {});
+      rb.query('skip', params.skip, {});
     }
 
     return this.http.request(rb.build({
@@ -104,6 +108,8 @@ export class TrackService extends BaseService {
    * This method doesn't expect any request body.
    */
   trackControllerFindAll(params?: {
+    limit?: number;
+    skip?: number;
   }): Observable<Array<ReadTrackDto>> {
 
     return this.trackControllerFindAll$Response(params).pipe(

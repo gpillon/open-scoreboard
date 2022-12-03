@@ -1,3 +1,3 @@
 import { SkipLimitDto } from '../../../utils/dto/skip-limit.dto';
 
-export class QueryGameDto extends SkipLimitDto {}
+export class QueryLapDto extends SkipLimitDto {}

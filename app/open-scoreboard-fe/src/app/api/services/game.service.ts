@@ -80,10 +80,14 @@ export class GameService extends BaseService {
    * This method doesn't expect any request body.
    */
   gameControllerFindAll$Response(params?: {
+    limit?: number;
+    skip?: number;
   }): Observable<StrictHttpResponse<Array<ReadGameDto>>> {
 
     const rb = new RequestBuilder(this.rootUrl, GameService.GameControllerFindAllPath, 'get');
     if (params) {
+      rb.query('limit', params.limit, {});
+      rb.query('skip', params.skip, {});
     }
 
     return this.http.request(rb.build({
@@ -104,6 +108,8 @@ export class GameService extends BaseService {
    * This method doesn't expect any request body.
    */
   gameControllerFindAll(params?: {
+    limit?: number;
+    skip?: number;
   }): Observable<Array<ReadGameDto>> {
 
     return this.gameControllerFindAll$Response(params).pipe(

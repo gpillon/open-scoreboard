@@ -80,10 +80,14 @@ export class LapService extends BaseService {
    * This method doesn't expect any request body.
    */
   lapControllerFindAll$Response(params?: {
+    limit?: number;
+    skip?: number;
   }): Observable<StrictHttpResponse<Array<ReadLapDto>>> {
 
     const rb = new RequestBuilder(this.rootUrl, LapService.LapControllerFindAllPath, 'get');
     if (params) {
+      rb.query('limit', params.limit, {});
+      rb.query('skip', params.skip, {});
     }
 
     return this.http.request(rb.build({
@@ -104,6 +108,8 @@ export class LapService extends BaseService {
    * This method doesn't expect any request body.
    */
   lapControllerFindAll(params?: {
+    limit?: number;
+    skip?: number;
   }): Observable<Array<ReadLapDto>> {
 
     return this.lapControllerFindAll$Response(params).pipe(
