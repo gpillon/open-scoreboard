@@ -115,5 +115,5 @@ temp
 
 # rush
 common/temp/
-.odo\env
-.odo\odo-file-index.json
+.odo/env
+.odo/odo-file-index.json
