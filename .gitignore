@@ -6,6 +6,9 @@ yarn-debug.log*
 yarn-error.log*
 lerna-debug.log*
 
+
+tmp/
+
 # Diagnostic reports (https://nodejs.org/api/report.html)
 report.[0-9]*.[0-9]*.[0-9]*.[0-9]*.json
 
@@ -106,6 +109,11 @@ dist
 # IntelliJ
 .idea
 
+#temp
+tmp
+temp
 
 # rush
 common/temp/
+.odo\env
+.odo\odo-file-index.json

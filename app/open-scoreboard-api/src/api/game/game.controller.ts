@@ -14,7 +14,7 @@ import { GameService } from './game.service';
 import { CreateGameDto } from './dto/create-game.dto';
 import { UpdateGameDto } from './dto/update-game.dto';
 import { ApiResponse, ApiTags } from '@nestjs/swagger';
-import { ReadGameDto } from './dto/read-Game.dto';
+import { ReadGameDto } from './dto/read-game.dto';
 import { ApiResponseAlreadyExists } from '../../utils/decorators/already-exists.decorator';
 import {
   ApiResponseNotFound,
