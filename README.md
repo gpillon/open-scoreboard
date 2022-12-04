@@ -28,7 +28,7 @@ rush update
 
 ## Its a Monorepo ❤!
 
-Whole applicaiton is developed in a Monorepo, all packages composing application are in a single repo.
+Whole application is developed in a Monorepo, all packages composing application are in a single repo.
 
 Folder Structure:
 
@@ -47,13 +47,52 @@ open-scorboard
 
 ## TODO
 
-- [x] Init Backend
-- [ ] Auth for Backend
-- [x] Init Frontend
-- [ ] Realtime server
-- [ ] Realtime fe Display
-- [ ] k8s operators
-- [ ] k8s operator
+- [ ] Frontend
+    - [x] Init Frontend
+    - [ ] Realtime Display
+    - [ ] Player history
+    - [ ] user login
+
+- [ ] Backend
+    - [x] Init Backend
+    - [x] Healthcheck Endpoint
+    - [x] Game Endpoint
+    - [x] Player Endpoint
+    - [x] Track Endpoint
+    - [x] Lap Endpoint
+    - [ ] Auth
+    - [ ] Unit testing (?)
+    - [ ] integration testing (?)
+    - [ ] e2e testing (?)
+
+- [ ] Realtime Server
+    - [ ] Init Realtime Server
+    - [ ] Healthcheck Endpoint
+    - [ ] Unit testing (?)
+    - [ ] integration testing (?)
+    - [ ] e2e testing (?)
+
+- [ ] k8s
+    - [ ] k8s operator
+    - [ ] Unit testing (?)
+    - [ ] integration testing (?)
+    - [ ] e2e testing (?)
+
+- [ ] Game Server Manager
+    - [ ] Init Game Server Manager
+    - [ ] Healthcheck Endpoint
+    - [ ] define `requestGameServer()` endpoint
+    - [ ] define `listPublicServers()` endpoint
+    - [ ] Unit testing (?)
+    - [ ] integration testing (?)
+    - [ ] e2e testing (?)
+
+- [ ] Game Server
+    - [ ] Define Game Server statuses
+    - [ ] Define Integration with Game Server Manager
+    - [ ] Unit testing (?)
+    - [ ] integration testing (?)
+    - [ ] e2e testing (?)
 
 ## Architecture
 
