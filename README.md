@@ -49,9 +49,13 @@ open-scorboard
 
 - [ ] Frontend
     - [x] Init Frontend
+    - [x] Sample Dashboard
+    - [ ] Remove Boilerplate
     - [ ] Realtime Display
     - [ ] Player history
-    - [ ] user login
+    - [ ] User login with SSO (Google / Facebook / Twitter / OAuth 2)
+    - [ ] User data / profile
+    - [ ] Social functions ?
 
 - [ ] Backend
     - [x] Init Backend
@@ -61,6 +65,7 @@ open-scorboard
     - [x] Track Endpoint
     - [x] Lap Endpoint
     - [x] Auth
+    - [ ] SSO (Google / Facebook / Twitter / OAuth 2)
     - [ ] User Module
     - [ ] RBAC (Single tenant)
     - [ ] Unit testing (?)
