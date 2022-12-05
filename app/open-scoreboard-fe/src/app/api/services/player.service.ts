@@ -1,7 +1,7 @@
 /* tslint:disable */
 /* eslint-disable */
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpResponse } from '@angular/common/http';
+import { HttpClient, HttpResponse, HttpContext } from '@angular/common/http';
 import { BaseService } from '../base-service';
 import { ApiConfiguration } from '../api-configuration';
 import { StrictHttpResponse } from '../strict-http-response';
@@ -28,7 +28,7 @@ export class PlayerService extends BaseService {
   /**
    * Path part for operation playerControllerCount
    */
-  static readonly PlayerControllerCountPath = '/api/v1/player/count';
+  static readonly PlayerControllerCountPath = '/api/v1/players/count';
 
   /**
    * This method provides access to the full `HttpResponse`, allowing access to response headers.
@@ -37,7 +37,9 @@ export class PlayerService extends BaseService {
    * This method doesn't expect any request body.
    */
   playerControllerCount$Response(params?: {
-  }): Observable<StrictHttpResponse<CountDto>> {
+    context?: HttpContext
+  }
+): Observable<StrictHttpResponse<CountDto>> {
 
     const rb = new RequestBuilder(this.rootUrl, PlayerService.PlayerControllerCountPath, 'get');
     if (params) {
@@ -45,7 +47,8 @@ export class PlayerService extends BaseService {
 
     return this.http.request(rb.build({
       responseType: 'json',
-      accept: 'application/json'
+      accept: 'application/json',
+      context: params?.context
     })).pipe(
       filter((r: any) => r instanceof HttpResponse),
       map((r: HttpResponse<any>) => {
@@ -61,7 +64,9 @@ export class PlayerService extends BaseService {
    * This method doesn't expect any request body.
    */
   playerControllerCount(params?: {
-  }): Observable<CountDto> {
+    context?: HttpContext
+  }
+): Observable<CountDto> {
 
     return this.playerControllerCount$Response(params).pipe(
       map((r: StrictHttpResponse<CountDto>) => r.body as CountDto)
@@ -71,7 +76,7 @@ export class PlayerService extends BaseService {
   /**
    * Path part for operation playerControllerFindAll
    */
-  static readonly PlayerControllerFindAllPath = '/api/v1/player';
+  static readonly PlayerControllerFindAllPath = '/api/v1/players';
 
   /**
    * This method provides access to the full `HttpResponse`, allowing access to response headers.
@@ -82,7 +87,9 @@ export class PlayerService extends BaseService {
   playerControllerFindAll$Response(params?: {
     limit?: number;
     skip?: number;
-  }): Observable<StrictHttpResponse<Array<ReadPlayerDto>>> {
+    context?: HttpContext
+  }
+): Observable<StrictHttpResponse<Array<ReadPlayerDto>>> {
 
     const rb = new RequestBuilder(this.rootUrl, PlayerService.PlayerControllerFindAllPath, 'get');
     if (params) {
@@ -92,7 +99,8 @@ export class PlayerService extends BaseService {
 
     return this.http.request(rb.build({
       responseType: 'json',
-      accept: 'application/json'
+      accept: 'application/json',
+      context: params?.context
     })).pipe(
       filter((r: any) => r instanceof HttpResponse),
       map((r: HttpResponse<any>) => {
@@ -110,7 +118,9 @@ export class PlayerService extends BaseService {
   playerControllerFindAll(params?: {
     limit?: number;
     skip?: number;
-  }): Observable<Array<ReadPlayerDto>> {
+    context?: HttpContext
+  }
+): Observable<Array<ReadPlayerDto>> {
 
     return this.playerControllerFindAll$Response(params).pipe(
       map((r: StrictHttpResponse<Array<ReadPlayerDto>>) => r.body as Array<ReadPlayerDto>)
@@ -120,7 +130,7 @@ export class PlayerService extends BaseService {
   /**
    * Path part for operation playerControllerCreate
    */
-  static readonly PlayerControllerCreatePath = '/api/v1/player';
+  static readonly PlayerControllerCreatePath = '/api/v1/players';
 
   /**
    * This method provides access to the full `HttpResponse`, allowing access to response headers.
@@ -129,8 +139,10 @@ export class PlayerService extends BaseService {
    * This method sends `application/json` and handles request body of type `application/json`.
    */
   playerControllerCreate$Response(params: {
+    context?: HttpContext
     body: CreatePlayerDto
-  }): Observable<StrictHttpResponse<ReadPlayerDto>> {
+  }
+): Observable<StrictHttpResponse<ReadPlayerDto>> {
 
     const rb = new RequestBuilder(this.rootUrl, PlayerService.PlayerControllerCreatePath, 'post');
     if (params) {
@@ -139,7 +151,8 @@ export class PlayerService extends BaseService {
 
     return this.http.request(rb.build({
       responseType: 'json',
-      accept: 'application/json'
+      accept: 'application/json',
+      context: params?.context
     })).pipe(
       filter((r: any) => r instanceof HttpResponse),
       map((r: HttpResponse<any>) => {
@@ -155,8 +168,10 @@ export class PlayerService extends BaseService {
    * This method sends `application/json` and handles request body of type `application/json`.
    */
   playerControllerCreate(params: {
+    context?: HttpContext
     body: CreatePlayerDto
-  }): Observable<ReadPlayerDto> {
+  }
+): Observable<ReadPlayerDto> {
 
     return this.playerControllerCreate$Response(params).pipe(
       map((r: StrictHttpResponse<ReadPlayerDto>) => r.body as ReadPlayerDto)
@@ -166,7 +181,7 @@ export class PlayerService extends BaseService {
   /**
    * Path part for operation playerControllerFindOne
    */
-  static readonly PlayerControllerFindOnePath = '/api/v1/player/{id}';
+  static readonly PlayerControllerFindOnePath = '/api/v1/players/{id}';
 
   /**
    * This method provides access to the full `HttpResponse`, allowing access to response headers.
@@ -176,7 +191,9 @@ export class PlayerService extends BaseService {
    */
   playerControllerFindOne$Response(params: {
     id: string;
-  }): Observable<StrictHttpResponse<ReadPlayerDto>> {
+    context?: HttpContext
+  }
+): Observable<StrictHttpResponse<ReadPlayerDto>> {
 
     const rb = new RequestBuilder(this.rootUrl, PlayerService.PlayerControllerFindOnePath, 'get');
     if (params) {
@@ -185,7 +202,8 @@ export class PlayerService extends BaseService {
 
     return this.http.request(rb.build({
       responseType: 'json',
-      accept: 'application/json'
+      accept: 'application/json',
+      context: params?.context
     })).pipe(
       filter((r: any) => r instanceof HttpResponse),
       map((r: HttpResponse<any>) => {
@@ -202,7 +220,9 @@ export class PlayerService extends BaseService {
    */
   playerControllerFindOne(params: {
     id: string;
-  }): Observable<ReadPlayerDto> {
+    context?: HttpContext
+  }
+): Observable<ReadPlayerDto> {
 
     return this.playerControllerFindOne$Response(params).pipe(
       map((r: StrictHttpResponse<ReadPlayerDto>) => r.body as ReadPlayerDto)
@@ -212,7 +232,7 @@ export class PlayerService extends BaseService {
   /**
    * Path part for operation playerControllerRemove
    */
-  static readonly PlayerControllerRemovePath = '/api/v1/player/{id}';
+  static readonly PlayerControllerRemovePath = '/api/v1/players/{id}';
 
   /**
    * This method provides access to the full `HttpResponse`, allowing access to response headers.
@@ -222,7 +242,9 @@ export class PlayerService extends BaseService {
    */
   playerControllerRemove$Response(params: {
     id: string;
-  }): Observable<StrictHttpResponse<ReadPlayerDto>> {
+    context?: HttpContext
+  }
+): Observable<StrictHttpResponse<ReadPlayerDto>> {
 
     const rb = new RequestBuilder(this.rootUrl, PlayerService.PlayerControllerRemovePath, 'delete');
     if (params) {
@@ -231,7 +253,8 @@ export class PlayerService extends BaseService {
 
     return this.http.request(rb.build({
       responseType: 'json',
-      accept: 'application/json'
+      accept: 'application/json',
+      context: params?.context
     })).pipe(
       filter((r: any) => r instanceof HttpResponse),
       map((r: HttpResponse<any>) => {
@@ -248,7 +271,9 @@ export class PlayerService extends BaseService {
    */
   playerControllerRemove(params: {
     id: string;
-  }): Observable<ReadPlayerDto> {
+    context?: HttpContext
+  }
+): Observable<ReadPlayerDto> {
 
     return this.playerControllerRemove$Response(params).pipe(
       map((r: StrictHttpResponse<ReadPlayerDto>) => r.body as ReadPlayerDto)
@@ -258,7 +283,7 @@ export class PlayerService extends BaseService {
   /**
    * Path part for operation playerControllerUpdate
    */
-  static readonly PlayerControllerUpdatePath = '/api/v1/player/{id}';
+  static readonly PlayerControllerUpdatePath = '/api/v1/players/{id}';
 
   /**
    * This method provides access to the full `HttpResponse`, allowing access to response headers.
@@ -268,8 +293,10 @@ export class PlayerService extends BaseService {
    */
   playerControllerUpdate$Response(params: {
     id: string;
+    context?: HttpContext
     body: UpdatePlayerDto
-  }): Observable<StrictHttpResponse<ReadPlayerDto>> {
+  }
+): Observable<StrictHttpResponse<ReadPlayerDto>> {
 
     const rb = new RequestBuilder(this.rootUrl, PlayerService.PlayerControllerUpdatePath, 'patch');
     if (params) {
@@ -279,7 +306,8 @@ export class PlayerService extends BaseService {
 
     return this.http.request(rb.build({
       responseType: 'json',
-      accept: 'application/json'
+      accept: 'application/json',
+      context: params?.context
     })).pipe(
       filter((r: any) => r instanceof HttpResponse),
       map((r: HttpResponse<any>) => {
@@ -296,8 +324,10 @@ export class PlayerService extends BaseService {
    */
   playerControllerUpdate(params: {
     id: string;
+    context?: HttpContext
     body: UpdatePlayerDto
-  }): Observable<ReadPlayerDto> {
+  }
+): Observable<ReadPlayerDto> {
 
     return this.playerControllerUpdate$Response(params).pipe(
       map((r: StrictHttpResponse<ReadPlayerDto>) => r.body as ReadPlayerDto)

@@ -73,12 +73,6 @@ export class TrackController {
     return DtoUtils.instanceToReadDto(track, ReadTrackDto);
   }
 
-  private async validateExists(id: string) {
-    const track = await this.trackService.findOne(id);
-    if (!track) throw new NotFoundErr('Track');
-    return track;
-  }
-
   @Patch(':id')
   @ApiResponse({ type: ReadTrackDto, status: HttpStatus.OK })
   @ApiResponseBadRequestDecorator()
@@ -105,5 +99,11 @@ export class TrackController {
     const track = await this.validateExists(id);
     await this.trackService.remove(id);
     return DtoUtils.instanceToReadDto(track, ReadTrackDto);
+  }
+
+  private async validateExists(id: string) {
+    const track = await this.trackService.findOne(id);
+    if (!track) throw new NotFoundErr('Track');
+    return track;
   }
 }

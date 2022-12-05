@@ -5,6 +5,7 @@ import { Track } from './entities/track.entity';
 import { Repository } from 'typeorm';
 import { InjectRepository } from '@nestjs/typeorm';
 import { QueryGameDto } from '../game/dto/query-game.dto';
+import { isUUID } from 'class-validator';
 
 @Injectable()
 export class TrackService {
@@ -36,8 +37,9 @@ export class TrackService {
   }
 
   async findOne(idOrName: string): Promise<Track | null> {
+    const searchObj = isUUID(idOrName) ? { id: idOrName } : { name: idOrName };
     return this.trackRepository.findOne({
-      where: [{ id: idOrName }, { name: idOrName }],
+      where: [searchObj],
     });
   }
 

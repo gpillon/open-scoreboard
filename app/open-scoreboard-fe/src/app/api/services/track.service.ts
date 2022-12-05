@@ -1,7 +1,7 @@
 /* tslint:disable */
 /* eslint-disable */
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpResponse } from '@angular/common/http';
+import { HttpClient, HttpResponse, HttpContext } from '@angular/common/http';
 import { BaseService } from '../base-service';
 import { ApiConfiguration } from '../api-configuration';
 import { StrictHttpResponse } from '../strict-http-response';
@@ -28,7 +28,7 @@ export class TrackService extends BaseService {
   /**
    * Path part for operation trackControllerCount
    */
-  static readonly TrackControllerCountPath = '/api/v1/track/count';
+  static readonly TrackControllerCountPath = '/api/v1/tracks/count';
 
   /**
    * This method provides access to the full `HttpResponse`, allowing access to response headers.
@@ -37,7 +37,9 @@ export class TrackService extends BaseService {
    * This method doesn't expect any request body.
    */
   trackControllerCount$Response(params?: {
-  }): Observable<StrictHttpResponse<CountDto>> {
+    context?: HttpContext
+  }
+): Observable<StrictHttpResponse<CountDto>> {
 
     const rb = new RequestBuilder(this.rootUrl, TrackService.TrackControllerCountPath, 'get');
     if (params) {
@@ -45,7 +47,8 @@ export class TrackService extends BaseService {
 
     return this.http.request(rb.build({
       responseType: 'json',
-      accept: 'application/json'
+      accept: 'application/json',
+      context: params?.context
     })).pipe(
       filter((r: any) => r instanceof HttpResponse),
       map((r: HttpResponse<any>) => {
@@ -61,7 +64,9 @@ export class TrackService extends BaseService {
    * This method doesn't expect any request body.
    */
   trackControllerCount(params?: {
-  }): Observable<CountDto> {
+    context?: HttpContext
+  }
+): Observable<CountDto> {
 
     return this.trackControllerCount$Response(params).pipe(
       map((r: StrictHttpResponse<CountDto>) => r.body as CountDto)
@@ -71,7 +76,7 @@ export class TrackService extends BaseService {
   /**
    * Path part for operation trackControllerFindAll
    */
-  static readonly TrackControllerFindAllPath = '/api/v1/track';
+  static readonly TrackControllerFindAllPath = '/api/v1/tracks';
 
   /**
    * This method provides access to the full `HttpResponse`, allowing access to response headers.
@@ -82,7 +87,9 @@ export class TrackService extends BaseService {
   trackControllerFindAll$Response(params?: {
     limit?: number;
     skip?: number;
-  }): Observable<StrictHttpResponse<Array<ReadTrackDto>>> {
+    context?: HttpContext
+  }
+): Observable<StrictHttpResponse<Array<ReadTrackDto>>> {
 
     const rb = new RequestBuilder(this.rootUrl, TrackService.TrackControllerFindAllPath, 'get');
     if (params) {
@@ -92,7 +99,8 @@ export class TrackService extends BaseService {
 
     return this.http.request(rb.build({
       responseType: 'json',
-      accept: 'application/json'
+      accept: 'application/json',
+      context: params?.context
     })).pipe(
       filter((r: any) => r instanceof HttpResponse),
       map((r: HttpResponse<any>) => {
@@ -110,7 +118,9 @@ export class TrackService extends BaseService {
   trackControllerFindAll(params?: {
     limit?: number;
     skip?: number;
-  }): Observable<Array<ReadTrackDto>> {
+    context?: HttpContext
+  }
+): Observable<Array<ReadTrackDto>> {
 
     return this.trackControllerFindAll$Response(params).pipe(
       map((r: StrictHttpResponse<Array<ReadTrackDto>>) => r.body as Array<ReadTrackDto>)
@@ -120,7 +130,7 @@ export class TrackService extends BaseService {
   /**
    * Path part for operation trackControllerCreate
    */
-  static readonly TrackControllerCreatePath = '/api/v1/track';
+  static readonly TrackControllerCreatePath = '/api/v1/tracks';
 
   /**
    * This method provides access to the full `HttpResponse`, allowing access to response headers.
@@ -129,8 +139,10 @@ export class TrackService extends BaseService {
    * This method sends `application/json` and handles request body of type `application/json`.
    */
   trackControllerCreate$Response(params: {
+    context?: HttpContext
     body: CreateTrackDto
-  }): Observable<StrictHttpResponse<ReadTrackDto>> {
+  }
+): Observable<StrictHttpResponse<ReadTrackDto>> {
 
     const rb = new RequestBuilder(this.rootUrl, TrackService.TrackControllerCreatePath, 'post');
     if (params) {
@@ -139,7 +151,8 @@ export class TrackService extends BaseService {
 
     return this.http.request(rb.build({
       responseType: 'json',
-      accept: 'application/json'
+      accept: 'application/json',
+      context: params?.context
     })).pipe(
       filter((r: any) => r instanceof HttpResponse),
       map((r: HttpResponse<any>) => {
@@ -155,8 +168,10 @@ export class TrackService extends BaseService {
    * This method sends `application/json` and handles request body of type `application/json`.
    */
   trackControllerCreate(params: {
+    context?: HttpContext
     body: CreateTrackDto
-  }): Observable<ReadTrackDto> {
+  }
+): Observable<ReadTrackDto> {
 
     return this.trackControllerCreate$Response(params).pipe(
       map((r: StrictHttpResponse<ReadTrackDto>) => r.body as ReadTrackDto)
@@ -166,7 +181,7 @@ export class TrackService extends BaseService {
   /**
    * Path part for operation trackControllerFindOne
    */
-  static readonly TrackControllerFindOnePath = '/api/v1/track/{id}';
+  static readonly TrackControllerFindOnePath = '/api/v1/tracks/{id}';
 
   /**
    * This method provides access to the full `HttpResponse`, allowing access to response headers.
@@ -176,7 +191,9 @@ export class TrackService extends BaseService {
    */
   trackControllerFindOne$Response(params: {
     id: string;
-  }): Observable<StrictHttpResponse<ReadTrackDto>> {
+    context?: HttpContext
+  }
+): Observable<StrictHttpResponse<ReadTrackDto>> {
 
     const rb = new RequestBuilder(this.rootUrl, TrackService.TrackControllerFindOnePath, 'get');
     if (params) {
@@ -185,7 +202,8 @@ export class TrackService extends BaseService {
 
     return this.http.request(rb.build({
       responseType: 'json',
-      accept: 'application/json'
+      accept: 'application/json',
+      context: params?.context
     })).pipe(
       filter((r: any) => r instanceof HttpResponse),
       map((r: HttpResponse<any>) => {
@@ -202,7 +220,9 @@ export class TrackService extends BaseService {
    */
   trackControllerFindOne(params: {
     id: string;
-  }): Observable<ReadTrackDto> {
+    context?: HttpContext
+  }
+): Observable<ReadTrackDto> {
 
     return this.trackControllerFindOne$Response(params).pipe(
       map((r: StrictHttpResponse<ReadTrackDto>) => r.body as ReadTrackDto)
@@ -212,7 +232,7 @@ export class TrackService extends BaseService {
   /**
    * Path part for operation trackControllerRemove
    */
-  static readonly TrackControllerRemovePath = '/api/v1/track/{id}';
+  static readonly TrackControllerRemovePath = '/api/v1/tracks/{id}';
 
   /**
    * This method provides access to the full `HttpResponse`, allowing access to response headers.
@@ -222,7 +242,9 @@ export class TrackService extends BaseService {
    */
   trackControllerRemove$Response(params: {
     id: string;
-  }): Observable<StrictHttpResponse<ReadTrackDto>> {
+    context?: HttpContext
+  }
+): Observable<StrictHttpResponse<ReadTrackDto>> {
 
     const rb = new RequestBuilder(this.rootUrl, TrackService.TrackControllerRemovePath, 'delete');
     if (params) {
@@ -231,7 +253,8 @@ export class TrackService extends BaseService {
 
     return this.http.request(rb.build({
       responseType: 'json',
-      accept: 'application/json'
+      accept: 'application/json',
+      context: params?.context
     })).pipe(
       filter((r: any) => r instanceof HttpResponse),
       map((r: HttpResponse<any>) => {
@@ -248,7 +271,9 @@ export class TrackService extends BaseService {
    */
   trackControllerRemove(params: {
     id: string;
-  }): Observable<ReadTrackDto> {
+    context?: HttpContext
+  }
+): Observable<ReadTrackDto> {
 
     return this.trackControllerRemove$Response(params).pipe(
       map((r: StrictHttpResponse<ReadTrackDto>) => r.body as ReadTrackDto)
@@ -258,7 +283,7 @@ export class TrackService extends BaseService {
   /**
    * Path part for operation trackControllerUpdate
    */
-  static readonly TrackControllerUpdatePath = '/api/v1/track/{id}';
+  static readonly TrackControllerUpdatePath = '/api/v1/tracks/{id}';
 
   /**
    * This method provides access to the full `HttpResponse`, allowing access to response headers.
@@ -268,8 +293,10 @@ export class TrackService extends BaseService {
    */
   trackControllerUpdate$Response(params: {
     id: string;
+    context?: HttpContext
     body: UpdateTrackDto
-  }): Observable<StrictHttpResponse<ReadTrackDto>> {
+  }
+): Observable<StrictHttpResponse<ReadTrackDto>> {
 
     const rb = new RequestBuilder(this.rootUrl, TrackService.TrackControllerUpdatePath, 'patch');
     if (params) {
@@ -279,7 +306,8 @@ export class TrackService extends BaseService {
 
     return this.http.request(rb.build({
       responseType: 'json',
-      accept: 'application/json'
+      accept: 'application/json',
+      context: params?.context
     })).pipe(
       filter((r: any) => r instanceof HttpResponse),
       map((r: HttpResponse<any>) => {
@@ -296,8 +324,10 @@ export class TrackService extends BaseService {
    */
   trackControllerUpdate(params: {
     id: string;
+    context?: HttpContext
     body: UpdateTrackDto
-  }): Observable<ReadTrackDto> {
+  }
+): Observable<ReadTrackDto> {
 
     return this.trackControllerUpdate$Response(params).pipe(
       map((r: StrictHttpResponse<ReadTrackDto>) => r.body as ReadTrackDto)

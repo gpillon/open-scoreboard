@@ -1,7 +1,7 @@
 /* tslint:disable */
 /* eslint-disable */
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpResponse } from '@angular/common/http';
+import { HttpClient, HttpResponse, HttpContext } from '@angular/common/http';
 import { BaseService } from '../base-service';
 import { ApiConfiguration } from '../api-configuration';
 import { StrictHttpResponse } from '../strict-http-response';
@@ -28,7 +28,7 @@ export class LapService extends BaseService {
   /**
    * Path part for operation lapControllerCount
    */
-  static readonly LapControllerCountPath = '/api/v1/lap/count';
+  static readonly LapControllerCountPath = '/api/v1/laps/count';
 
   /**
    * This method provides access to the full `HttpResponse`, allowing access to response headers.
@@ -37,7 +37,9 @@ export class LapService extends BaseService {
    * This method doesn't expect any request body.
    */
   lapControllerCount$Response(params?: {
-  }): Observable<StrictHttpResponse<CountDto>> {
+    context?: HttpContext
+  }
+): Observable<StrictHttpResponse<CountDto>> {
 
     const rb = new RequestBuilder(this.rootUrl, LapService.LapControllerCountPath, 'get');
     if (params) {
@@ -45,7 +47,8 @@ export class LapService extends BaseService {
 
     return this.http.request(rb.build({
       responseType: 'json',
-      accept: 'application/json'
+      accept: 'application/json',
+      context: params?.context
     })).pipe(
       filter((r: any) => r instanceof HttpResponse),
       map((r: HttpResponse<any>) => {
@@ -61,7 +64,9 @@ export class LapService extends BaseService {
    * This method doesn't expect any request body.
    */
   lapControllerCount(params?: {
-  }): Observable<CountDto> {
+    context?: HttpContext
+  }
+): Observable<CountDto> {
 
     return this.lapControllerCount$Response(params).pipe(
       map((r: StrictHttpResponse<CountDto>) => r.body as CountDto)
@@ -71,7 +76,7 @@ export class LapService extends BaseService {
   /**
    * Path part for operation lapControllerFindAll
    */
-  static readonly LapControllerFindAllPath = '/api/v1/lap';
+  static readonly LapControllerFindAllPath = '/api/v1/laps';
 
   /**
    * This method provides access to the full `HttpResponse`, allowing access to response headers.
@@ -82,7 +87,9 @@ export class LapService extends BaseService {
   lapControllerFindAll$Response(params?: {
     limit?: number;
     skip?: number;
-  }): Observable<StrictHttpResponse<Array<ReadLapDto>>> {
+    context?: HttpContext
+  }
+): Observable<StrictHttpResponse<Array<ReadLapDto>>> {
 
     const rb = new RequestBuilder(this.rootUrl, LapService.LapControllerFindAllPath, 'get');
     if (params) {
@@ -92,7 +99,8 @@ export class LapService extends BaseService {
 
     return this.http.request(rb.build({
       responseType: 'json',
-      accept: 'application/json'
+      accept: 'application/json',
+      context: params?.context
     })).pipe(
       filter((r: any) => r instanceof HttpResponse),
       map((r: HttpResponse<any>) => {
@@ -110,7 +118,9 @@ export class LapService extends BaseService {
   lapControllerFindAll(params?: {
     limit?: number;
     skip?: number;
-  }): Observable<Array<ReadLapDto>> {
+    context?: HttpContext
+  }
+): Observable<Array<ReadLapDto>> {
 
     return this.lapControllerFindAll$Response(params).pipe(
       map((r: StrictHttpResponse<Array<ReadLapDto>>) => r.body as Array<ReadLapDto>)
@@ -120,7 +130,7 @@ export class LapService extends BaseService {
   /**
    * Path part for operation lapControllerCreate
    */
-  static readonly LapControllerCreatePath = '/api/v1/lap';
+  static readonly LapControllerCreatePath = '/api/v1/laps';
 
   /**
    * This method provides access to the full `HttpResponse`, allowing access to response headers.
@@ -129,8 +139,10 @@ export class LapService extends BaseService {
    * This method sends `application/json` and handles request body of type `application/json`.
    */
   lapControllerCreate$Response(params: {
+    context?: HttpContext
     body: CreateLapDto
-  }): Observable<StrictHttpResponse<ReadLapDto>> {
+  }
+): Observable<StrictHttpResponse<ReadLapDto>> {
 
     const rb = new RequestBuilder(this.rootUrl, LapService.LapControllerCreatePath, 'post');
     if (params) {
@@ -139,7 +151,8 @@ export class LapService extends BaseService {
 
     return this.http.request(rb.build({
       responseType: 'json',
-      accept: 'application/json'
+      accept: 'application/json',
+      context: params?.context
     })).pipe(
       filter((r: any) => r instanceof HttpResponse),
       map((r: HttpResponse<any>) => {
@@ -155,8 +168,10 @@ export class LapService extends BaseService {
    * This method sends `application/json` and handles request body of type `application/json`.
    */
   lapControllerCreate(params: {
+    context?: HttpContext
     body: CreateLapDto
-  }): Observable<ReadLapDto> {
+  }
+): Observable<ReadLapDto> {
 
     return this.lapControllerCreate$Response(params).pipe(
       map((r: StrictHttpResponse<ReadLapDto>) => r.body as ReadLapDto)
@@ -166,7 +181,7 @@ export class LapService extends BaseService {
   /**
    * Path part for operation lapControllerFindOne
    */
-  static readonly LapControllerFindOnePath = '/api/v1/lap/{id}';
+  static readonly LapControllerFindOnePath = '/api/v1/laps/{id}';
 
   /**
    * This method provides access to the full `HttpResponse`, allowing access to response headers.
@@ -176,7 +191,9 @@ export class LapService extends BaseService {
    */
   lapControllerFindOne$Response(params: {
     id: string;
-  }): Observable<StrictHttpResponse<ReadLapDto>> {
+    context?: HttpContext
+  }
+): Observable<StrictHttpResponse<ReadLapDto>> {
 
     const rb = new RequestBuilder(this.rootUrl, LapService.LapControllerFindOnePath, 'get');
     if (params) {
@@ -185,7 +202,8 @@ export class LapService extends BaseService {
 
     return this.http.request(rb.build({
       responseType: 'json',
-      accept: 'application/json'
+      accept: 'application/json',
+      context: params?.context
     })).pipe(
       filter((r: any) => r instanceof HttpResponse),
       map((r: HttpResponse<any>) => {
@@ -202,7 +220,9 @@ export class LapService extends BaseService {
    */
   lapControllerFindOne(params: {
     id: string;
-  }): Observable<ReadLapDto> {
+    context?: HttpContext
+  }
+): Observable<ReadLapDto> {
 
     return this.lapControllerFindOne$Response(params).pipe(
       map((r: StrictHttpResponse<ReadLapDto>) => r.body as ReadLapDto)
@@ -212,7 +232,7 @@ export class LapService extends BaseService {
   /**
    * Path part for operation lapControllerRemove
    */
-  static readonly LapControllerRemovePath = '/api/v1/lap/{id}';
+  static readonly LapControllerRemovePath = '/api/v1/laps/{id}';
 
   /**
    * This method provides access to the full `HttpResponse`, allowing access to response headers.
@@ -222,7 +242,9 @@ export class LapService extends BaseService {
    */
   lapControllerRemove$Response(params: {
     id: string;
-  }): Observable<StrictHttpResponse<ReadLapDto>> {
+    context?: HttpContext
+  }
+): Observable<StrictHttpResponse<ReadLapDto>> {
 
     const rb = new RequestBuilder(this.rootUrl, LapService.LapControllerRemovePath, 'delete');
     if (params) {
@@ -231,7 +253,8 @@ export class LapService extends BaseService {
 
     return this.http.request(rb.build({
       responseType: 'json',
-      accept: 'application/json'
+      accept: 'application/json',
+      context: params?.context
     })).pipe(
       filter((r: any) => r instanceof HttpResponse),
       map((r: HttpResponse<any>) => {
@@ -248,7 +271,9 @@ export class LapService extends BaseService {
    */
   lapControllerRemove(params: {
     id: string;
-  }): Observable<ReadLapDto> {
+    context?: HttpContext
+  }
+): Observable<ReadLapDto> {
 
     return this.lapControllerRemove$Response(params).pipe(
       map((r: StrictHttpResponse<ReadLapDto>) => r.body as ReadLapDto)
@@ -258,7 +283,7 @@ export class LapService extends BaseService {
   /**
    * Path part for operation lapControllerUpdate
    */
-  static readonly LapControllerUpdatePath = '/api/v1/lap/{id}';
+  static readonly LapControllerUpdatePath = '/api/v1/laps/{id}';
 
   /**
    * This method provides access to the full `HttpResponse`, allowing access to response headers.
@@ -268,8 +293,10 @@ export class LapService extends BaseService {
    */
   lapControllerUpdate$Response(params: {
     id: string;
+    context?: HttpContext
     body: UpdateLapDto
-  }): Observable<StrictHttpResponse<ReadLapDto>> {
+  }
+): Observable<StrictHttpResponse<ReadLapDto>> {
 
     const rb = new RequestBuilder(this.rootUrl, LapService.LapControllerUpdatePath, 'patch');
     if (params) {
@@ -279,7 +306,8 @@ export class LapService extends BaseService {
 
     return this.http.request(rb.build({
       responseType: 'json',
-      accept: 'application/json'
+      accept: 'application/json',
+      context: params?.context
     })).pipe(
       filter((r: any) => r instanceof HttpResponse),
       map((r: HttpResponse<any>) => {
@@ -296,8 +324,10 @@ export class LapService extends BaseService {
    */
   lapControllerUpdate(params: {
     id: string;
+    context?: HttpContext
     body: UpdateLapDto
-  }): Observable<ReadLapDto> {
+  }
+): Observable<ReadLapDto> {
 
     return this.lapControllerUpdate$Response(params).pipe(
       map((r: StrictHttpResponse<ReadLapDto>) => r.body as ReadLapDto)

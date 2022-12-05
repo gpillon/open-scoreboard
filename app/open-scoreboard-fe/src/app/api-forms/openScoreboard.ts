@@ -4,6 +4,69 @@ export const readHealthcheckDtoForm = new FormGroup({
   uptime: new FormControl(null, [Validators.required])
 });
 
+export const loginForm = new FormGroup({
+  email: new FormControl(null, [Validators.required, Validators.email]),
+  password: new FormControl(null, [Validators.required]),
+  rememberMe: new FormControl(null, [Validators.required])
+});
+
+export const signUpDtoForm = new FormGroup({
+  email: new FormControl(null, [Validators.required, Validators.email]),
+  password: new FormControl(null, [Validators.required]),
+  name: new FormControl(null, [Validators.required]),
+  lastName: new FormControl(null, [])
+});
+
+export const resetPasswordForm = new FormGroup({
+  email: new FormControl(null, [Validators.required, Validators.email]),
+  password: new FormControl(null, [Validators.required]),
+  confirmPassword: new FormControl(null, [Validators.required]),
+  resetPasswordToken: new FormControl(null, [Validators.required])
+});
+
+export const emailForm = new FormGroup({
+  email: new FormControl(null, [Validators.required, Validators.email])
+});
+
+export const tokensDtoForm = new FormGroup({
+  expires_in: new FormControl(null, [Validators.required]),
+  access_token: new FormControl(null, [Validators.required]),
+  refresh_token: new FormControl(null, [Validators.required])
+});
+
+export const createUserDtoForm = new FormGroup({
+  name: new FormControl(null, [Validators.required]),
+  lastName: new FormControl(null, []),
+  email: new FormControl(null, [Validators.required, Validators.email])
+});
+
+export const readUserDtoForm = new FormGroup({
+  id: new FormControl(null, [Validators.required]),
+  email: new FormControl(null, [Validators.required]),
+  roles: new FormControl(null, [Validators.required]),
+  name: new FormControl(null, []),
+  lastName: new FormControl(null, [Validators.required])
+});
+
+export const updateUserDtoForm = new FormGroup({
+  name: new FormControl(null, []),
+  lastName: new FormControl(null, []),
+  email: new FormControl(null, [Validators.email])
+});
+
+export const fileUploadDtoForm = new FormGroup({
+  file: new FormControl(null, [Validators.required])
+});
+
+export const updateUserSettingsDtoForm = new FormGroup({
+  themeName: new FormControl(null, [Validators.required])
+});
+
+export const updatePasswordDtoForm = new FormGroup({
+  password: new FormControl(null, [Validators.required]),
+  newPassword: new FormControl(null, [Validators.required])
+});
+
 export const countDtoForm = new FormGroup({
   count: new FormControl(null, [Validators.required])
 });

@@ -5,6 +5,8 @@ import { HttpClient } from '@angular/common/http';
 import { ApiConfiguration, ApiConfigurationParams } from './api-configuration';
 
 import { HealthcheckService } from './services/healthcheck.service';
+import { AuthService } from './services/auth.service';
+import { UserService } from './services/user.service';
 import { GameService } from './services/game.service';
 import { TrackService } from './services/track.service';
 import { PlayerService } from './services/player.service';
@@ -19,6 +21,8 @@ import { LapService } from './services/lap.service';
   declarations: [],
   providers: [
     HealthcheckService,
+    AuthService,
+    UserService,
     GameService,
     TrackService,
     PlayerService,

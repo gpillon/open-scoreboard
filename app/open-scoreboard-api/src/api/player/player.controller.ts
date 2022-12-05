@@ -75,12 +75,6 @@ export class PlayerController {
     return DtoUtils.instanceToReadDto(player, ReadPlayerDto);
   }
 
-  private async validateExists(id: string) {
-    const player = await this.playerService.findOne(id);
-    if (!player) throw new NotFoundErr('Player');
-    return player;
-  }
-
   @Patch(':id')
   @ApiResponse({ type: ReadPlayerDto, status: HttpStatus.OK })
   @ApiResponseBadRequestDecorator()
@@ -107,5 +101,11 @@ export class PlayerController {
     const player = await this.validateExists(id);
     await this.playerService.remove(id);
     return DtoUtils.instanceToReadDto(player, ReadPlayerDto);
+  }
+
+  private async validateExists(id: string) {
+    const player = await this.playerService.findOne(id);
+    if (!player) throw new NotFoundErr('Player');
+    return player;
   }
 }

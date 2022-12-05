@@ -1,7 +1,7 @@
 /* tslint:disable */
 /* eslint-disable */
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpResponse } from '@angular/common/http';
+import { HttpClient, HttpResponse, HttpContext } from '@angular/common/http';
 import { BaseService } from '../base-service';
 import { ApiConfiguration } from '../api-configuration';
 import { StrictHttpResponse } from '../strict-http-response';
@@ -25,7 +25,7 @@ export class HealthcheckService extends BaseService {
   /**
    * Path part for operation healthcheckControllerUptime
    */
-  static readonly HealthcheckControllerUptimePath = '/api/v1/healthcheck';
+  static readonly HealthcheckControllerUptimePath = '/healthcheck';
 
   /**
    * This method provides access to the full `HttpResponse`, allowing access to response headers.
@@ -34,7 +34,9 @@ export class HealthcheckService extends BaseService {
    * This method doesn't expect any request body.
    */
   healthcheckControllerUptime$Response(params?: {
-  }): Observable<StrictHttpResponse<ReadHealthcheckDto>> {
+    context?: HttpContext
+  }
+): Observable<StrictHttpResponse<ReadHealthcheckDto>> {
 
     const rb = new RequestBuilder(this.rootUrl, HealthcheckService.HealthcheckControllerUptimePath, 'get');
     if (params) {
@@ -42,7 +44,8 @@ export class HealthcheckService extends BaseService {
 
     return this.http.request(rb.build({
       responseType: 'json',
-      accept: 'application/json'
+      accept: 'application/json',
+      context: params?.context
     })).pipe(
       filter((r: any) => r instanceof HttpResponse),
       map((r: HttpResponse<any>) => {
@@ -58,7 +61,9 @@ export class HealthcheckService extends BaseService {
    * This method doesn't expect any request body.
    */
   healthcheckControllerUptime(params?: {
-  }): Observable<ReadHealthcheckDto> {
+    context?: HttpContext
+  }
+): Observable<ReadHealthcheckDto> {
 
     return this.healthcheckControllerUptime$Response(params).pipe(
       map((r: StrictHttpResponse<ReadHealthcheckDto>) => r.body as ReadHealthcheckDto)

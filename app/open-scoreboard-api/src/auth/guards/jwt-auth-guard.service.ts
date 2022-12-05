@@ -1,5 +1,5 @@
 import { applyDecorators, UseGuards } from '@nestjs/common';
-import { ApiBearerAuth } from '@nestjs/swagger';
+import { ApiBearerAuth, ApiUnauthorizedResponse } from '@nestjs/swagger';
 import { AuthGuard } from '@nestjs/passport';
 
 export function JwtAuthGuard() {
@@ -7,5 +7,6 @@ export function JwtAuthGuard() {
     UseGuards(AuthGuard(['jwt', 'jwtQuery'])),
     ApiBearerAuth(),
     ApiBearerAuth('token'),
+    ApiUnauthorizedResponse({ description: 'Unauthorized' }),
   );
 }

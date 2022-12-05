@@ -1,7 +1,7 @@
 /* tslint:disable */
 /* eslint-disable */
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpResponse } from '@angular/common/http';
+import { HttpClient, HttpResponse, HttpContext } from '@angular/common/http';
 import { BaseService } from '../base-service';
 import { ApiConfiguration } from '../api-configuration';
 import { StrictHttpResponse } from '../strict-http-response';
@@ -28,7 +28,7 @@ export class GameService extends BaseService {
   /**
    * Path part for operation gameControllerCount
    */
-  static readonly GameControllerCountPath = '/api/v1/game/count';
+  static readonly GameControllerCountPath = '/api/v1/games/count';
 
   /**
    * This method provides access to the full `HttpResponse`, allowing access to response headers.
@@ -37,7 +37,9 @@ export class GameService extends BaseService {
    * This method doesn't expect any request body.
    */
   gameControllerCount$Response(params?: {
-  }): Observable<StrictHttpResponse<CountDto>> {
+    context?: HttpContext
+  }
+): Observable<StrictHttpResponse<CountDto>> {
 
     const rb = new RequestBuilder(this.rootUrl, GameService.GameControllerCountPath, 'get');
     if (params) {
@@ -45,7 +47,8 @@ export class GameService extends BaseService {
 
     return this.http.request(rb.build({
       responseType: 'json',
-      accept: 'application/json'
+      accept: 'application/json',
+      context: params?.context
     })).pipe(
       filter((r: any) => r instanceof HttpResponse),
       map((r: HttpResponse<any>) => {
@@ -61,7 +64,9 @@ export class GameService extends BaseService {
    * This method doesn't expect any request body.
    */
   gameControllerCount(params?: {
-  }): Observable<CountDto> {
+    context?: HttpContext
+  }
+): Observable<CountDto> {
 
     return this.gameControllerCount$Response(params).pipe(
       map((r: StrictHttpResponse<CountDto>) => r.body as CountDto)
@@ -71,7 +76,7 @@ export class GameService extends BaseService {
   /**
    * Path part for operation gameControllerFindAll
    */
-  static readonly GameControllerFindAllPath = '/api/v1/game';
+  static readonly GameControllerFindAllPath = '/api/v1/games';
 
   /**
    * This method provides access to the full `HttpResponse`, allowing access to response headers.
@@ -82,7 +87,9 @@ export class GameService extends BaseService {
   gameControllerFindAll$Response(params?: {
     limit?: number;
     skip?: number;
-  }): Observable<StrictHttpResponse<Array<ReadGameDto>>> {
+    context?: HttpContext
+  }
+): Observable<StrictHttpResponse<Array<ReadGameDto>>> {
 
     const rb = new RequestBuilder(this.rootUrl, GameService.GameControllerFindAllPath, 'get');
     if (params) {
@@ -92,7 +99,8 @@ export class GameService extends BaseService {
 
     return this.http.request(rb.build({
       responseType: 'json',
-      accept: 'application/json'
+      accept: 'application/json',
+      context: params?.context
     })).pipe(
       filter((r: any) => r instanceof HttpResponse),
       map((r: HttpResponse<any>) => {
@@ -110,7 +118,9 @@ export class GameService extends BaseService {
   gameControllerFindAll(params?: {
     limit?: number;
     skip?: number;
-  }): Observable<Array<ReadGameDto>> {
+    context?: HttpContext
+  }
+): Observable<Array<ReadGameDto>> {
 
     return this.gameControllerFindAll$Response(params).pipe(
       map((r: StrictHttpResponse<Array<ReadGameDto>>) => r.body as Array<ReadGameDto>)
@@ -120,7 +130,7 @@ export class GameService extends BaseService {
   /**
    * Path part for operation gameControllerCreate
    */
-  static readonly GameControllerCreatePath = '/api/v1/game';
+  static readonly GameControllerCreatePath = '/api/v1/games';
 
   /**
    * This method provides access to the full `HttpResponse`, allowing access to response headers.
@@ -129,8 +139,10 @@ export class GameService extends BaseService {
    * This method sends `application/json` and handles request body of type `application/json`.
    */
   gameControllerCreate$Response(params: {
+    context?: HttpContext
     body: CreateGameDto
-  }): Observable<StrictHttpResponse<ReadGameDto>> {
+  }
+): Observable<StrictHttpResponse<ReadGameDto>> {
 
     const rb = new RequestBuilder(this.rootUrl, GameService.GameControllerCreatePath, 'post');
     if (params) {
@@ -139,7 +151,8 @@ export class GameService extends BaseService {
 
     return this.http.request(rb.build({
       responseType: 'json',
-      accept: 'application/json'
+      accept: 'application/json',
+      context: params?.context
     })).pipe(
       filter((r: any) => r instanceof HttpResponse),
       map((r: HttpResponse<any>) => {
@@ -155,8 +168,10 @@ export class GameService extends BaseService {
    * This method sends `application/json` and handles request body of type `application/json`.
    */
   gameControllerCreate(params: {
+    context?: HttpContext
     body: CreateGameDto
-  }): Observable<ReadGameDto> {
+  }
+): Observable<ReadGameDto> {
 
     return this.gameControllerCreate$Response(params).pipe(
       map((r: StrictHttpResponse<ReadGameDto>) => r.body as ReadGameDto)
@@ -166,7 +181,7 @@ export class GameService extends BaseService {
   /**
    * Path part for operation gameControllerFindOne
    */
-  static readonly GameControllerFindOnePath = '/api/v1/game/{id}';
+  static readonly GameControllerFindOnePath = '/api/v1/games/{id}';
 
   /**
    * This method provides access to the full `HttpResponse`, allowing access to response headers.
@@ -176,7 +191,9 @@ export class GameService extends BaseService {
    */
   gameControllerFindOne$Response(params: {
     id: string;
-  }): Observable<StrictHttpResponse<ReadGameDto>> {
+    context?: HttpContext
+  }
+): Observable<StrictHttpResponse<ReadGameDto>> {
 
     const rb = new RequestBuilder(this.rootUrl, GameService.GameControllerFindOnePath, 'get');
     if (params) {
@@ -185,7 +202,8 @@ export class GameService extends BaseService {
 
     return this.http.request(rb.build({
       responseType: 'json',
-      accept: 'application/json'
+      accept: 'application/json',
+      context: params?.context
     })).pipe(
       filter((r: any) => r instanceof HttpResponse),
       map((r: HttpResponse<any>) => {
@@ -202,7 +220,9 @@ export class GameService extends BaseService {
    */
   gameControllerFindOne(params: {
     id: string;
-  }): Observable<ReadGameDto> {
+    context?: HttpContext
+  }
+): Observable<ReadGameDto> {
 
     return this.gameControllerFindOne$Response(params).pipe(
       map((r: StrictHttpResponse<ReadGameDto>) => r.body as ReadGameDto)
@@ -212,7 +232,7 @@ export class GameService extends BaseService {
   /**
    * Path part for operation gameControllerRemove
    */
-  static readonly GameControllerRemovePath = '/api/v1/game/{id}';
+  static readonly GameControllerRemovePath = '/api/v1/games/{id}';
 
   /**
    * This method provides access to the full `HttpResponse`, allowing access to response headers.
@@ -222,7 +242,9 @@ export class GameService extends BaseService {
    */
   gameControllerRemove$Response(params: {
     id: string;
-  }): Observable<StrictHttpResponse<ReadGameDto>> {
+    context?: HttpContext
+  }
+): Observable<StrictHttpResponse<ReadGameDto>> {
 
     const rb = new RequestBuilder(this.rootUrl, GameService.GameControllerRemovePath, 'delete');
     if (params) {
@@ -231,7 +253,8 @@ export class GameService extends BaseService {
 
     return this.http.request(rb.build({
       responseType: 'json',
-      accept: 'application/json'
+      accept: 'application/json',
+      context: params?.context
     })).pipe(
       filter((r: any) => r instanceof HttpResponse),
       map((r: HttpResponse<any>) => {
@@ -248,7 +271,9 @@ export class GameService extends BaseService {
    */
   gameControllerRemove(params: {
     id: string;
-  }): Observable<ReadGameDto> {
+    context?: HttpContext
+  }
+): Observable<ReadGameDto> {
 
     return this.gameControllerRemove$Response(params).pipe(
       map((r: StrictHttpResponse<ReadGameDto>) => r.body as ReadGameDto)
@@ -258,7 +283,7 @@ export class GameService extends BaseService {
   /**
    * Path part for operation gameControllerUpdate
    */
-  static readonly GameControllerUpdatePath = '/api/v1/game/{id}';
+  static readonly GameControllerUpdatePath = '/api/v1/games/{id}';
 
   /**
    * This method provides access to the full `HttpResponse`, allowing access to response headers.
@@ -268,8 +293,10 @@ export class GameService extends BaseService {
    */
   gameControllerUpdate$Response(params: {
     id: string;
+    context?: HttpContext
     body: UpdateGameDto
-  }): Observable<StrictHttpResponse<ReadGameDto>> {
+  }
+): Observable<StrictHttpResponse<ReadGameDto>> {
 
     const rb = new RequestBuilder(this.rootUrl, GameService.GameControllerUpdatePath, 'patch');
     if (params) {
@@ -279,7 +306,8 @@ export class GameService extends BaseService {
 
     return this.http.request(rb.build({
       responseType: 'json',
-      accept: 'application/json'
+      accept: 'application/json',
+      context: params?.context
     })).pipe(
       filter((r: any) => r instanceof HttpResponse),
       map((r: HttpResponse<any>) => {
@@ -296,8 +324,10 @@ export class GameService extends BaseService {
    */
   gameControllerUpdate(params: {
     id: string;
+    context?: HttpContext
     body: UpdateGameDto
-  }): Observable<ReadGameDto> {
+  }
+): Observable<ReadGameDto> {
 
     return this.gameControllerUpdate$Response(params).pipe(
       map((r: StrictHttpResponse<ReadGameDto>) => r.body as ReadGameDto)

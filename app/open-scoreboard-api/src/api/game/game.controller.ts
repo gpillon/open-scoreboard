@@ -67,12 +67,6 @@ export class GameController {
     return DtoUtils.instanceToReadDto(game, ReadGameDto);
   }
 
-  private async validateExists(id: string): Promise<Game> {
-    const Game = await this.gameService.findOne(id);
-    if (!Game) throw new NotFoundErr('Game');
-    return Game;
-  }
-
   @Patch(':id')
   @ApiResponse({ type: ReadGameDto, status: HttpStatus.OK })
   @ApiResponseBadRequestDecorator()
@@ -94,5 +88,11 @@ export class GameController {
     const game = await this.validateExists(id);
     await this.gameService.remove(id);
     return DtoUtils.instanceToReadDto(game, ReadGameDto);
+  }
+
+  private async validateExists(id: string): Promise<Game> {
+    const Game = await this.gameService.findOne(id);
+    if (!Game) throw new NotFoundErr('Game');
+    return Game;
   }
 }
