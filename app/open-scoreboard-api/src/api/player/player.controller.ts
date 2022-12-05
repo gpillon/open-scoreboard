@@ -31,7 +31,7 @@ import { CountDto } from '../../utils/dto/count.dto';
 import { QueryGameDto } from '../game/dto/query-game.dto';
 
 @ApiTags('Player')
-@Controller('player')
+@Controller()
 export class PlayerController {
   constructor(private readonly playerService: PlayerService) {}
 

@@ -28,7 +28,7 @@ import { CountDto } from '../../utils/dto/count.dto';
 import { QueryGameDto } from '../game/dto/query-game.dto';
 
 @ApiTags('Lap')
-@Controller('lap')
+@Controller()
 export class LapController {
   constructor(private readonly lapService: LapService) {}
 

@@ -60,7 +60,9 @@ open-scorboard
     - [x] Player Endpoint
     - [x] Track Endpoint
     - [x] Lap Endpoint
-    - [ ] Auth
+    - [x] Auth
+    - [ ] User Module
+    - [ ] RBAC (Single tenant)
     - [ ] Unit testing (?)
     - [ ] integration testing (?)
     - [ ] e2e testing (?)

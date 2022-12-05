@@ -28,7 +28,7 @@ import { ApiOkResponse } from '@nestjs/swagger/dist/decorators/api-response.deco
 import { QueryGameDto } from './dto/query-game.dto';
 
 @ApiTags('Game')
-@Controller('game')
+@Controller()
 export class GameController {
   constructor(private readonly gameService: GameService) {}
 

@@ -5,7 +5,7 @@ import { ValidationPipe } from '@nestjs/common';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
-  app.setGlobalPrefix('/api/v1/');
+  // app.setGlobalPrefix('/api/v1/');
   app.useGlobalPipes(
     new ValidationPipe({
       transform: true,
@@ -20,6 +20,21 @@ async function bootstrap() {
     .setTitle('Open Scoreboard')
     .setDescription('Open Scoreboard API description')
     .setVersion('1.0')
+    .addOAuth2()
+    .addBearerAuth()
+    .addApiKey(
+      {
+        type: 'apiKey', // or 'apiKey'
+        description: 'Authorization token',
+        name: 'token',
+        in: 'query',
+        // scheme?: string;
+        // bearerFormat?: string;
+        // flows?: OAuthFlowsObject;
+        // openIdConnectUrl?: string;
+      },
+      'token',
+    )
     .build();
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('/api', app, document);
