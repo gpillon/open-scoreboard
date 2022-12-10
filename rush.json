@@ -131,7 +131,7 @@
   //     "tools",      // non-shipping projects that are part of the developer toolchain
   //     "prototypes"  // experiments that should mostly be ignored by the review process
   //   ],
-  // 
+  //
   //   /**
   //    * A list of NPM package scopes that will be excluded from review.
   //    * We recommend to exclude TypeScript typings (the "@types" scope), because
@@ -270,7 +270,7 @@
     //    * The folder name for this variant.
     //    */
     //   "variantName": "old-sdk",
-    // 
+    //
     //   /**
     //    * An informative description
     //    */
@@ -403,8 +403,16 @@
       "tags": [
         "frontend"
       ]
+    },
+    {
+      "packageName": "open-scoreboard-ws",
+      "projectFolder": "app/open-scoreboard-ws",
+      "reviewCategory": "production",
+      "tags": [
+        "frontend"
+      ]
     }
-    // 
+    //
     // {
     //   "packageName": "my-toolchain",
     //   "projectFolder": "tools/my-toolchain",
